@@ -1,9 +1,12 @@
 package com.api.hotelmanagementsystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_guests")
@@ -16,6 +19,10 @@ public class Guest implements Serializable {
     private String name;
     private String socialSecurityNumber;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "id.guest")
+    private Set<Stay> stay = new HashSet<>();
+
     public Guest() {
     }
 
@@ -23,6 +30,10 @@ public class Guest implements Serializable {
         this.id = id;
         this.name = name;
         this.socialSecurityNumber = socialSecurityNumber;
+    }
+
+    public Set<Stay> getStay() {
+        return stay;
     }
 
     public Long getId() {

@@ -1,10 +1,11 @@
 package com.api.hotelmanagementsystem.entities;
 
-import com.api.hotelmanagementsystem.enums.RoomStatus;
+import com.api.hotelmanagementsystem.entities.enums.RoomStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_rooms")
@@ -16,6 +17,10 @@ public class Room implements Serializable {
     private Long id;
     private String number;
     private RoomStatus status;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "id.room")
+    private Set<Stay> stay = new HashSet<>();
 
     public Room() {
     }
