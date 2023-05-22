@@ -3,6 +3,7 @@ package com.api.hotelmanagementsystem.controllers;
 import com.api.hotelmanagementsystem.entities.Guest;
 import com.api.hotelmanagementsystem.services.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +16,12 @@ public class GuestController {
     private GuestService guestService;
 
     @GetMapping
-    public List<Guest> findAll() {
-        return guestService.findAll();
+    public ResponseEntity<List<Guest>> findAll() {
+        return ResponseEntity.ok().body(guestService.findAll());
     }
 
-    @PostMapping(value = "/{id}")
-    public Guest findById(@PathVariable long id) {
-        return guestService.findById(id).get();
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Guest> findById(@PathVariable long id) {
+        return ResponseEntity.ok().body(guestService.findById(id).get());
     }
 }
