@@ -1,4 +1,4 @@
-package com.example.hotelmanagementsystem;
+package com.api.hotelmanagementsystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
