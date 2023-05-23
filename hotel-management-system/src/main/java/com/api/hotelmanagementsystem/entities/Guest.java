@@ -19,7 +19,6 @@ public class Guest implements Serializable {
     private String name;
     private String socialSecurityNumber;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "id.guest")
     private Set<Stay> stay = new HashSet<>();
 

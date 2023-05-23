@@ -34,7 +34,7 @@ public class TestConfig implements CommandLineRunner {
         Guest g2 = new Guest(null, "Jane Doe", "9999111");
         Guest g3 = new Guest(null, "Indiana Jones", "8888888");
 
-        guestRepository.saveAll(Arrays.asList(g1, g2));
+        guestRepository.saveAll(Arrays.asList(g1, g2, g3));
 
         Room r1 = new Room(null, "123", RoomStatus.FREE);
         Room r2 = new Room(null, "111", RoomStatus.OCCUPIED);
@@ -42,8 +42,10 @@ public class TestConfig implements CommandLineRunner {
 
         roomRepository.saveAll(Arrays.asList(r1, r2, r3));
 
-        Stay s1 = new Stay(g1, r1, Date.valueOf("2023-05-22"), Date.valueOf("2023-05-22"));
+        Stay s1 = new Stay(g1, r1, Date.valueOf("2023-05-22"), Date.valueOf("2023-05-25"));
+        Stay s2 = new Stay(g2, r2, Date.valueOf("2023-05-25"), Date.valueOf("2023-05-26"));
+        Stay s3 = new Stay(g3, r3, Date.valueOf("2023-05-26"), Date.valueOf("2023-05-27"));
 
-        stayRepository.saveAll(Arrays.asList(s1));
+        stayRepository.saveAll(Arrays.asList(s1, s2, s3));
     }
 }

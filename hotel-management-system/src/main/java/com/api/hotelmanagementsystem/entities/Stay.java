@@ -35,16 +35,9 @@ public class Stay implements Serializable {
         return id.getRoom();
     }
 
+    @JsonIgnore
     public Guest getGuest() {
         return id.getGuest();
-    }
-
-    public StayPK getId() {
-        return id;
-    }
-
-    public void setId(StayPK id) {
-        this.id = id;
     }
 
     public Date getArrival() {
