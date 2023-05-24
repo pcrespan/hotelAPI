@@ -31,6 +31,17 @@ public class Room implements Serializable {
         this.status = status;
     }
 
+    public Set<Stay> getStay() {
+        return stay;
+    }
+
+    public boolean isFree() {
+        if (status.equals(RoomStatus.FREE)) {
+            return true;
+        }
+        return false;
+    }
+
     public Long getId() {
         return id;
     }
