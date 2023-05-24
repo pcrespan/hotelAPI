@@ -33,8 +33,8 @@ public class GuestController {
     }
 
     @PostMapping
-    public ResponseEntity<Guest> insert(@RequestBody Guest guest, Long roomId, Date arrival, Date leaving) {
-        Guest obj = guestService.insert(guest, roomId, arrival, leaving);
+    public ResponseEntity<Guest> insert(@RequestBody Guest guest) {
+        Guest obj = guestService.insert(guest);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
