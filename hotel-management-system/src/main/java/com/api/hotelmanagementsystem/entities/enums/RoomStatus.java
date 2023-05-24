@@ -14,7 +14,7 @@ public enum RoomStatus {
         return code;
     }
 
-    public RoomStatus valueOf(int code) {
+    public static RoomStatus valueOf(int code) {
         for (RoomStatus status : RoomStatus.values()) {
             if (status.getCode() == code) {
                 return status;

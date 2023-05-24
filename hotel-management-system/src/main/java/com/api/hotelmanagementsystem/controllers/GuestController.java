@@ -11,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/guests")
@@ -43,7 +44,7 @@ public class GuestController {
     }
 
     @GetMapping(value = "/{id}/stay")
-    public List<Stay> findStayByGuestId(@PathVariable long id) {
-        return stayService.findByGuestId(id);
+    public Set<Stay> findStayByGuestId(@PathVariable long id) {
+        return guestService.findById(id).get().getStay();
     }
 }
