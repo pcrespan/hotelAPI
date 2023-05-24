@@ -1,10 +1,8 @@
 package com.api.hotelmanagementsystem.controllers;
 
 import com.api.hotelmanagementsystem.entities.Guest;
-import com.api.hotelmanagementsystem.entities.Room;
-import com.api.hotelmanagementsystem.entities.enums.RoomStatus;
+import com.api.hotelmanagementsystem.entities.Stay;
 import com.api.hotelmanagementsystem.services.GuestService;
-import com.api.hotelmanagementsystem.services.RoomService;
 import com.api.hotelmanagementsystem.services.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,6 +18,9 @@ public class GuestController {
 
     @Autowired
     private GuestService guestService;
+
+    @Autowired
+    private StayService stayService;
 
     @GetMapping
     public ResponseEntity<List<Guest>> findAll() {
@@ -40,5 +40,10 @@ public class GuestController {
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
 
         return ResponseEntity.created(uri).body(obj);
+    }
+
+    @GetMapping(value = "/{id}/stay")
+    public List<Stay> findStayByGuestId(@PathVariable long id) {
+        return stayService.findByGuestId(id);
     }
 }

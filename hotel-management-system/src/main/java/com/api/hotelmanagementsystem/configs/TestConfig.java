@@ -39,8 +39,9 @@ public class TestConfig implements CommandLineRunner {
         Room r1 = new Room(null, "123", RoomStatus.FREE);
         Room r2 = new Room(null, "111", RoomStatus.OCCUPIED);
         Room r3 = new Room(null, "112", RoomStatus.FREE);
+        Room r4 = new Room(null, "113", RoomStatus.FREE);
 
-        roomRepository.saveAll(Arrays.asList(r1, r2, r3));
+        roomRepository.saveAll(Arrays.asList(r1, r2, r3, r4));
 
         Stay s1 = new Stay(g1, r1, Date.valueOf("2023-05-22"), Date.valueOf("2023-05-25"));
         Stay s2 = new Stay(g2, r2, Date.valueOf("2023-05-25"), Date.valueOf("2023-05-26"));
