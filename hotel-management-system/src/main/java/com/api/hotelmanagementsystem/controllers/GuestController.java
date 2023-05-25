@@ -20,9 +20,6 @@ public class GuestController {
     @Autowired
     private GuestService guestService;
 
-    @Autowired
-    private StayService stayService;
-
     @GetMapping
     public ResponseEntity<List<Guest>> findAll() {
         return ResponseEntity.ok().body(guestService.findAll());

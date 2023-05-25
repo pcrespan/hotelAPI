@@ -1,8 +1,6 @@
 package com.api.hotelmanagementsystem.entities;
 
-import com.api.hotelmanagementsystem.entities.enums.RoomStatus;
 import com.api.hotelmanagementsystem.entities.pk.StayPK;
-import com.api.hotelmanagementsystem.entities.projections.StayProjection;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -31,11 +29,6 @@ public class Stay implements Serializable {
         id.setRoom(room);
         this.arrival = arrival;
         this.leaving = leaving;
-    }
-
-    public Stay(StayProjection stayProjection) {
-        this.arrival = stayProjection.getArrival();
-        this.leaving = stayProjection.getLeaving();
     }
 
     public Room getRoom() {
