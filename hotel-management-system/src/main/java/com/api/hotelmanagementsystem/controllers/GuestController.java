@@ -1,9 +1,9 @@
 package com.api.hotelmanagementsystem.controllers;
 
+import com.api.hotelmanagementsystem.dto.GuestMinDTO;
 import com.api.hotelmanagementsystem.entities.Guest;
 import com.api.hotelmanagementsystem.entities.Stay;
 import com.api.hotelmanagementsystem.services.GuestService;
-import com.api.hotelmanagementsystem.services.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +21,13 @@ public class GuestController {
     private GuestService guestService;
 
     @GetMapping
-    public ResponseEntity<List<Guest>> findAll() {
+    public ResponseEntity<List<GuestMinDTO>> findAll() {
         return ResponseEntity.ok().body(guestService.findAll());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Guest> findById(@PathVariable long id) {
-        return ResponseEntity.ok().body(guestService.findById(id).get());
+    public ResponseEntity<GuestMinDTO> findById(@PathVariable long id) {
+        return ResponseEntity.ok().body(guestService.findGuestMinById(id));
     }
 
     @PostMapping
@@ -42,6 +42,6 @@ public class GuestController {
 
     @GetMapping(value = "/{id}/stay")
     public Set<Stay> findStayByGuestId(@PathVariable long id) {
-        return guestService.findById(id).get().getStay();
+        return guestService.findById(id).getStay();
     }
 }
