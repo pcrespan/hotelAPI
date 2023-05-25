@@ -35,6 +35,7 @@ public class Room implements Serializable {
         return stay;
     }
 
+    @JsonIgnore
     public boolean isFree() {
         if (status.equals(RoomStatus.FREE)) {
             return true;
