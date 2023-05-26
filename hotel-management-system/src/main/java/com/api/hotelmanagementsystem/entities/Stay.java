@@ -1,6 +1,7 @@
 package com.api.hotelmanagementsystem.entities;
 
 import com.api.hotelmanagementsystem.entities.pk.StayPK;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -18,7 +19,10 @@ public class Stay implements Serializable {
     @EmbeddedId
     private StayPK id = new StayPK();
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date arrival;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date leaving;
 
     public Stay() {
@@ -29,6 +33,14 @@ public class Stay implements Serializable {
         id.setRoom(room);
         this.arrival = arrival;
         this.leaving = leaving;
+    }
+
+    public void setRoom(Room room) {
+        id.setRoom(room);
+    }
+
+    public void setGuest(Guest guest) {
+        id.setGuest(guest);
     }
 
     public Room getRoom() {
