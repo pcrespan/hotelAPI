@@ -1,8 +1,8 @@
 package com.api.hotelmanagementsystem.entities.enums;
 
 public enum RoomStatus {
-    FREE(1),
-    OCCUPIED(2);
+    FREE(0),
+    OCCUPIED(1);
 
     private int code;
 
