@@ -1,5 +1,6 @@
 package com.api.hotelmanagementsystem.controllers;
 
+import com.api.hotelmanagementsystem.dto.GuestDTO;
 import com.api.hotelmanagementsystem.dto.GuestMinDTO;
 import com.api.hotelmanagementsystem.entities.Guest;
 import com.api.hotelmanagementsystem.entities.Room;
@@ -38,8 +39,8 @@ public class GuestController {
     }
 
     @PostMapping
-    public ResponseEntity<Guest> insert(@RequestBody Guest guest) {
-        Guest obj = guestService.insert(guest);
+    public ResponseEntity<GuestDTO> insert(@RequestBody Guest guest) {
+        GuestDTO obj = new GuestDTO(guestService.insert(guest));
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();

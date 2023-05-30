@@ -33,12 +33,12 @@ public class StayService {
         try {
             Room obj = roomRepository.findById(room.getId()).get();
 
-            if (obj.isFree()) {
+            if (obj.isFree() && room.isFree()) {
                 room.setStatus(RoomStatus.OCCUPIED);
                 roomRepository.updateRoomStatus(room.getStatus().getCode(), room.getId());
                 return stayRepository.save(stay);
             } else {
-                throw new RoomOccupiedException("Occupied.");
+                throw new RoomOccupiedException("Room is already occupied or JSON parameters are wrong.");
             }
         } catch (NoSuchElementException e) {
             throw new InvalidRoomIdException(e.getMessage());
