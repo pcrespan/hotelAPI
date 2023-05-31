@@ -1,8 +1,11 @@
 package com.api.hotelmanagementsystem.services;
 
+import com.api.hotelmanagementsystem.entities.Guest;
 import com.api.hotelmanagementsystem.entities.Room;
 import com.api.hotelmanagementsystem.entities.Stay;
+import com.api.hotelmanagementsystem.entities.StayRequest;
 import com.api.hotelmanagementsystem.entities.enums.RoomStatus;
+import com.api.hotelmanagementsystem.repositories.GuestRepository;
 import com.api.hotelmanagementsystem.repositories.RoomRepository;
 import com.api.hotelmanagementsystem.repositories.StayRepository;
 import com.api.hotelmanagementsystem.services.exceptions.InvalidRoomIdException;
@@ -22,20 +25,20 @@ public class StayService {
     @Autowired
     RoomRepository roomRepository;
 
+    @Autowired
+    GuestRepository guestRepository;
+
     @Transactional
-    public Stay insert(Stay stay) {
-        // Error was here. I was testing isFree() on the JSON parameter
-        /* It'd probably be better if only the room id was passed as a parameter
-            along with arrival and leaving
-        */
-        Room room = stay.getRoom();
+    public Stay insert(StayRequest stayRequest) {
 
         try {
-            Room obj = roomRepository.findById(room.getId()).get();
+            Room room = roomRepository.findById(stayRequest.getRoomId()).get();
 
-            if (obj.isFree() && room.isFree()) {
+            if (room.isFree()) {
                 room.setStatus(RoomStatus.OCCUPIED);
                 roomRepository.updateRoomStatus(room.getStatus().getCode(), room.getId());
+                Guest guest = guestRepository.findById(stayRequest.getGuestId()).get();
+                Stay stay = new Stay(guest, room, stayRequest.getArrival(), stayRequest.getLeaving());
                 return stayRepository.save(stay);
             } else {
                 throw new RoomOccupiedException("Room is already occupied or JSON parameters are wrong.");

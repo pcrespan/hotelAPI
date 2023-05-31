@@ -5,6 +5,7 @@ import com.api.hotelmanagementsystem.dto.GuestMinDTO;
 import com.api.hotelmanagementsystem.entities.Guest;
 import com.api.hotelmanagementsystem.entities.Room;
 import com.api.hotelmanagementsystem.entities.Stay;
+import com.api.hotelmanagementsystem.entities.StayRequest;
 import com.api.hotelmanagementsystem.services.GuestService;
 import com.api.hotelmanagementsystem.services.StayService;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -54,9 +55,8 @@ public class GuestController {
     }
 
     @PostMapping(value = "/{id}/stay")
-    public Stay insertStay(@PathVariable long id, @RequestBody Stay stay) {
-        Guest guest = guestService.findById(id);
-        stay.setGuest(guest);
+    public Stay insertStay(@PathVariable long id, @RequestBody StayRequest stay) {
+        stay.setGuestId(id);
         return stayService.insert(stay);
     }
 }
