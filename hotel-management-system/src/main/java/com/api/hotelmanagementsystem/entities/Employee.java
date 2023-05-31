@@ -30,6 +30,10 @@ public class Employee implements Serializable {
         this.status = status;
     }
 
+    public Contract getContract() {
+        return contract;
+    }
+
     public EmployeeStatus getStatus() {
         return status;
     }

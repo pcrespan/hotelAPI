@@ -1,6 +1,7 @@
 package com.api.hotelmanagementsystem.entities;
 
 import com.api.hotelmanagementsystem.entities.pk.ContractPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -24,6 +25,15 @@ public class Contract implements Serializable {
         id.setSector(sector);
         this.salary = salary;
         this.start = start;
+    }
+
+    @JsonIgnore
+    public Employee getEmployee() {
+        return id.getEmployee();
+    }
+
+    public Sector getSector() {
+        return id.getSector();
     }
 
     public Double getSalary() {
