@@ -1,5 +1,6 @@
 package com.api.hotelmanagementsystem.entities;
 
+import com.api.hotelmanagementsystem.entities.enums.EmployeeStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,15 +16,26 @@ public class Employee implements Serializable {
     private Long id;
     private String name;
 
+    private EmployeeStatus status;
+
     @OneToOne(mappedBy = "id.employee")
     private Contract contract;
 
     public Employee() {
     }
 
-    public Employee(Long id, String name) {
+    public Employee(Long id, String name, EmployeeStatus status) {
         this.id = id;
         this.name = name;
+        this.status = status;
+    }
+
+    public EmployeeStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(EmployeeStatus status) {
+        this.status = status;
     }
 
     public Long getId() {

@@ -1,6 +1,7 @@
 package com.api.hotelmanagementsystem.configs;
 
 import com.api.hotelmanagementsystem.entities.*;
+import com.api.hotelmanagementsystem.entities.enums.EmployeeStatus;
 import com.api.hotelmanagementsystem.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -54,9 +55,9 @@ public class TestConfig implements CommandLineRunner {
 
         stayRepository.saveAll(Arrays.asList(s1, s2, s3));
 
-        Employee e1 = new Employee(null, "John Thompson");
-        Employee e2 = new Employee(null, "Phoenix Wright");
-        Employee e3 = new Employee(null, "Edward Edgeworth");
+        Employee e1 = new Employee(null, "John Thompson", EmployeeStatus.ACTIVE);
+        Employee e2 = new Employee(null, "Phoenix Wright", EmployeeStatus.ACTIVE);
+        Employee e3 = new Employee(null, "Edward Edgeworth", EmployeeStatus.ACTIVE);
 
         employeeRepository.saveAll(Arrays.asList(e1, e2, e3));
 
