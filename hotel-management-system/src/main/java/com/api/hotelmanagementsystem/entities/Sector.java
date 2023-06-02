@@ -21,7 +21,7 @@ public class Sector implements Serializable {
     private String description;
 
     @OneToMany(mappedBy = "id.sector")
-    private Set<Contract> contract = new HashSet<>();
+    private Set<Contract> contracts = new HashSet<>();
 
     public Sector() {
     }
@@ -30,6 +30,10 @@ public class Sector implements Serializable {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public Set<Contract> getContracts() {
+        return contracts;
     }
 
     public Long getId() {
