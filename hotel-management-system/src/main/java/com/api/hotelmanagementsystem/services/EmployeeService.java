@@ -1,8 +1,8 @@
 package com.api.hotelmanagementsystem.services;
 
 import com.api.hotelmanagementsystem.entities.Employee;
-import com.api.hotelmanagementsystem.entities.EmployeeDTO;
-import com.api.hotelmanagementsystem.entities.EmployeeMinDTO;
+import com.api.hotelmanagementsystem.dto.EmployeeDTO;
+import com.api.hotelmanagementsystem.dto.EmployeeMinDTO;
 import com.api.hotelmanagementsystem.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

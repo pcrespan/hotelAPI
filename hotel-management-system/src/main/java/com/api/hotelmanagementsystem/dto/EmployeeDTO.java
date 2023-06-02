@@ -1,19 +1,21 @@
-package com.api.hotelmanagementsystem.entities;
+package com.api.hotelmanagementsystem.dto;
 
+import com.api.hotelmanagementsystem.entities.Contract;
+import com.api.hotelmanagementsystem.entities.Employee;
 import com.api.hotelmanagementsystem.entities.enums.EmployeeStatus;
+import org.springframework.beans.BeanUtils;
 
-public class EmployeeMinDTO {
+public class EmployeeDTO {
     private Long id;
     private String name;
     private EmployeeStatus status;
+    private Contract contract;
 
-    public EmployeeMinDTO() {
+    public EmployeeDTO() {
     }
 
-    public EmployeeMinDTO(Employee employee) {
-        this.id = employee.getId();
-        this.name = employee.getName();
-        this.status = employee.getStatus();
+    public EmployeeDTO(Employee employee) {
+        BeanUtils.copyProperties(employee, this);
     }
 
     public Long getId() {
@@ -38,5 +40,13 @@ public class EmployeeMinDTO {
 
     public void setStatus(EmployeeStatus status) {
         this.status = status;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 }

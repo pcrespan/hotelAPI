@@ -1,8 +1,8 @@
 package com.api.hotelmanagementsystem.controllers;
 
 import com.api.hotelmanagementsystem.entities.Employee;
-import com.api.hotelmanagementsystem.entities.EmployeeDTO;
-import com.api.hotelmanagementsystem.entities.EmployeeMinDTO;
+import com.api.hotelmanagementsystem.dto.EmployeeDTO;
+import com.api.hotelmanagementsystem.dto.EmployeeMinDTO;
 import com.api.hotelmanagementsystem.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
