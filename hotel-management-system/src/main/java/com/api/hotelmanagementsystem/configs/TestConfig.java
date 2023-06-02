@@ -55,21 +55,30 @@ public class TestConfig implements CommandLineRunner {
 
         stayRepository.saveAll(Arrays.asList(s1, s2, s3));
 
-        Employee e1 = new Employee(null, "John Thompson", EmployeeStatus.ACTIVE);
-        Employee e2 = new Employee(null, "Phoenix Wright", EmployeeStatus.ACTIVE);
-        Employee e3 = new Employee(null, "Edward Edgeworth", EmployeeStatus.ACTIVE);
+        Employee e1 = new Employee(null, "Pam Beesly", EmployeeStatus.ACTIVE);
+        Employee e2 = new Employee(null, "Dwight Schrute", EmployeeStatus.ACTIVE);
+        Employee e3 = new Employee(null, "Jim Halpert", EmployeeStatus.ACTIVE);
+        Employee e4 = new Employee(null, "Ryan Howard", EmployeeStatus.ACTIVE);
+        Employee e5 = new Employee(null, "Andy Bernard", EmployeeStatus.ACTIVE);
+        Employee e6 = new Employee(null, "Michael Scott", EmployeeStatus.ACTIVE);
+        Employee e7 = new Employee(null, "Toby Flanderson", EmployeeStatus.ACTIVE);
 
-        employeeRepository.saveAll(Arrays.asList(e1, e2, e3));
+        employeeRepository.saveAll(Arrays.asList(e1, e2, e3, e4, e5, e6, e7));
 
-        Sector sec1 = new Sector(null, "Cleaning", "Cleans rooms and hotel halls.");
-        Sector sec2 = new Sector(null, "Cooking", "Cooks and plans the menu.");
+        Sector sec1 = new Sector(null, "Reception", "Answers calls and schedules appointments");
+        Sector sec2 = new Sector(null, "Human Resources", "Solves conflicts between people");
+        Sector sec3 = new Sector(null, "Sales", "Establishes contact between hotel and clients");
 
-        sectorRepository.saveAll(Arrays.asList(sec1, sec2));
+        sectorRepository.saveAll(Arrays.asList(sec1, sec2, sec3));
 
         Contract c1 = new Contract(e1, sec1, 2000.0, Date.valueOf("2023-05-22"));
-        Contract c2 = new Contract(e2, sec2, 7500.0, Date.valueOf("1999-03-12"));
-        Contract c3 = new Contract(e3, sec2, 5000.0, Date.valueOf("2012-09-17"));
+        Contract c2 = new Contract(e2, sec3, 7000.0, Date.valueOf("1999-03-12"));
+        Contract c3 = new Contract(e3, sec3, 5000.0, Date.valueOf("2005-02-17"));
+        Contract c4 = new Contract(e4, sec3, 2000.0, Date.valueOf("2012-09-30"));
+        Contract c5 = new Contract(e5, sec3, 4500.0, Date.valueOf("2003-06-23"));
+        Contract c6 = new Contract(e6, sec3, 7500.0, Date.valueOf("1990-04-12"));
+        Contract c7 = new Contract(e7, sec2, 4000.0, Date.valueOf("1995-04-12"));
 
-        contractRepository.saveAll(Arrays.asList(c1, c2, c3));
+        contractRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7));
     }
 }
