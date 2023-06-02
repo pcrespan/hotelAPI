@@ -6,19 +6,31 @@ import org.springframework.beans.BeanUtils;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class SectorDTO {
 
     private Long id;
     private String name;
     private String description;
-    private Set<Contract> contracts = new HashSet<>();
+    private Set<ContractMinDTO> contracts = new HashSet<>();
 
     public SectorDTO() {
     }
 
     public SectorDTO(Sector sector) {
-        BeanUtils.copyProperties(sector, this);
+        this.id = sector.getId();
+        this.name = sector.getName();
+        this.description = sector.getDescription();
+        this.contracts = convertContracts(sector.getContracts());
+    }
+
+    private Set<ContractMinDTO> convertContracts(Set<Contract> previousContracts) {
+        Set<ContractMinDTO> convertedContracts = previousContracts
+                .stream()
+                .map(x -> new ContractMinDTO(x))
+                .collect(Collectors.toSet());
+        return convertedContracts;
     }
 
     public Long getId() {
@@ -45,7 +57,7 @@ public class SectorDTO {
         this.description = description;
     }
 
-    public Set<Contract> getContracts() {
+    public Set<ContractMinDTO> getContracts() {
         return contracts;
     }
 }
