@@ -18,7 +18,7 @@ public class Employee implements Serializable {
 
     private EmployeeStatus status;
 
-    @OneToOne(mappedBy = "id.employee")
+    @OneToOne(mappedBy = "id.employee", fetch = FetchType.LAZY)
     private Contract contract;
 
     public Employee() {
