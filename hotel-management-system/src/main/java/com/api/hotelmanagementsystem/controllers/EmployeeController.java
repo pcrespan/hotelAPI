@@ -1,6 +1,8 @@
 package com.api.hotelmanagementsystem.controllers;
 
 import com.api.hotelmanagementsystem.entities.Employee;
+import com.api.hotelmanagementsystem.entities.EmployeeDTO;
+import com.api.hotelmanagementsystem.entities.EmployeeMinDTO;
 import com.api.hotelmanagementsystem.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +20,18 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping
-    public ResponseEntity<List<Employee>> findAll() {
+    public ResponseEntity<List<EmployeeMinDTO>> findAll() {
         return ResponseEntity.ok().body(employeeService.findAll());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Employee> findById(@PathVariable Long id) {
+    public ResponseEntity<EmployeeDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(employeeService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Employee> insert(@RequestBody Employee employee) {
-        Employee emp = employeeService.insert(employee);
+    public ResponseEntity<EmployeeDTO> insert(@RequestBody Employee employee) {
+        EmployeeDTO emp = employeeService.insert(employee);
 
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
