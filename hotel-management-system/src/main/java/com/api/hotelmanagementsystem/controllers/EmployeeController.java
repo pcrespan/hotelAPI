@@ -1,8 +1,11 @@
 package com.api.hotelmanagementsystem.controllers;
 
+import com.api.hotelmanagementsystem.entities.Contract;
+import com.api.hotelmanagementsystem.entities.ContractRequest;
 import com.api.hotelmanagementsystem.entities.Employee;
 import com.api.hotelmanagementsystem.dto.EmployeeDTO;
 import com.api.hotelmanagementsystem.dto.EmployeeMinDTO;
+import com.api.hotelmanagementsystem.services.ContractService;
 import com.api.hotelmanagementsystem.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +22,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private ContractService contractService;
+
     @GetMapping
     public ResponseEntity<List<EmployeeMinDTO>> findAll() {
         return ResponseEntity.ok().body(employeeService.findAll());
-    }
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<EmployeeDTO> findById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(employeeService.findById(id));
     }
 
     @PostMapping
@@ -40,5 +41,16 @@ public class EmployeeController {
                 .toUri();
 
         return ResponseEntity.created(uri).body(emp);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<EmployeeDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(employeeService.findById(id));
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<Contract> insertStay(@PathVariable Long id, @RequestBody ContractRequest contractRequest) {
+        contractRequest.setEmployeeId(id);
+        return ResponseEntity.ok().body(contractService.insert(contractRequest));
     }
 }

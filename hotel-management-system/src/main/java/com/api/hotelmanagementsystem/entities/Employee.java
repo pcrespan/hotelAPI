@@ -30,6 +30,13 @@ public class Employee implements Serializable {
         this.status = status;
     }
 
+    public boolean active() {
+        if (status.equals("ACTIVE")) {
+            return true;
+        }
+        return false;
+    }
+
     public Contract getContract() {
         return contract;
     }
