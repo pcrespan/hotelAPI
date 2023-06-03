@@ -2,6 +2,7 @@ package com.api.hotelmanagementsystem.services;
 
 import com.api.hotelmanagementsystem.dto.SectorDTO;
 import com.api.hotelmanagementsystem.dto.SectorMinDTO;
+import com.api.hotelmanagementsystem.entities.Sector;
 import com.api.hotelmanagementsystem.repositories.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,9 @@ public class SectorService {
 
     public SectorDTO findById(Long id) {
         return new SectorDTO(sectorRepository.findById(id).get());
+    }
+
+    public SectorDTO insert(Sector sector) {
+        return new SectorDTO(sectorRepository.save(sector));
     }
 }
