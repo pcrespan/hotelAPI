@@ -5,6 +5,7 @@ import com.api.hotelmanagementsystem.entities.enums.RoomStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {
 
@@ -14,5 +15,5 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
                     SET status = :status
                     WHERE id = :id
                     """)
-    void updateRoomStatus(Integer status, Long id);
+    void updateRoomStatus(@Param("status") Integer status, @Param("id") Long id);
 }

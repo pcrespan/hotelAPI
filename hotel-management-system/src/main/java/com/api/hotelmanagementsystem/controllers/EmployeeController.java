@@ -49,7 +49,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Contract> insertStay(@PathVariable Long id, @RequestBody ContractRequest contractRequest) {
+    public ResponseEntity<Contract> insertContract(@PathVariable Long id, @RequestBody ContractRequest contractRequest) {
         contractRequest.setEmployeeId(id);
         return ResponseEntity.ok().body(contractService.insert(contractRequest));
     }
