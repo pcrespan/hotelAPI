@@ -8,6 +8,8 @@ public class EmployeeMinDTO {
     private String name;
     private EmployeeStatus status;
 
+    private String socialSecurityNumber;
+
     public EmployeeMinDTO() {
     }
 
@@ -15,6 +17,15 @@ public class EmployeeMinDTO {
         this.id = employee.getId();
         this.name = employee.getName();
         this.status = employee.getStatus();
+        this.socialSecurityNumber = employee.getSocialSecurityNumber();
+    }
+
+    public String getSocialSecurityNumber() {
+        return socialSecurityNumber;
+    }
+
+    public void setSocialSecurityNumber(String socialSecurityNumber) {
+        this.socialSecurityNumber = socialSecurityNumber;
     }
 
     public Long getId() {

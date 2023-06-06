@@ -55,13 +55,13 @@ public class TestConfig implements CommandLineRunner {
 
         stayRepository.saveAll(Arrays.asList(s1, s2, s3));
 
-        Employee e1 = new Employee(null, "Pam Beesly", EmployeeStatus.ACTIVE);
-        Employee e2 = new Employee(null, "Dwight Schrute", EmployeeStatus.ACTIVE);
-        Employee e3 = new Employee(null, "Jim Halpert", EmployeeStatus.ACTIVE);
-        Employee e4 = new Employee(null, "Ryan Howard", EmployeeStatus.ACTIVE);
-        Employee e5 = new Employee(null, "Andy Bernard", EmployeeStatus.ACTIVE);
-        Employee e6 = new Employee(null, "Michael Scott", EmployeeStatus.ACTIVE);
-        Employee e7 = new Employee(null, "Toby Flanderson", EmployeeStatus.ACTIVE);
+        Employee e1 = new Employee(null, "Pam Beesly", EmployeeStatus.ACTIVE, "97485170363");
+        Employee e2 = new Employee(null, "Dwight Schrute", EmployeeStatus.ACTIVE, "94612013856");
+        Employee e3 = new Employee(null, "Jim Halpert", EmployeeStatus.ACTIVE, "51936204756");
+        Employee e4 = new Employee(null, "Ryan Howard", EmployeeStatus.ACTIVE, "89153672919");
+        Employee e5 = new Employee(null, "Andy Bernard", EmployeeStatus.ACTIVE, "17293485701");
+        Employee e6 = new Employee(null, "Michael Scott", EmployeeStatus.ACTIVE, "90281294586");
+        Employee e7 = new Employee(null, "Toby Flenderson", EmployeeStatus.ACTIVE, "57289120432");
 
         employeeRepository.saveAll(Arrays.asList(e1, e2, e3, e4, e5, e6, e7));
 

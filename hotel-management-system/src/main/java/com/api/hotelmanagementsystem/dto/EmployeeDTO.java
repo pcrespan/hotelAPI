@@ -11,11 +11,21 @@ public class EmployeeDTO {
     private EmployeeStatus status;
     private Contract contract;
 
+    private String socialSecurityNumber;
+
     public EmployeeDTO() {
     }
 
     public EmployeeDTO(Employee employee) {
         BeanUtils.copyProperties(employee, this);
+    }
+
+    public String getSocialSecurityNumber() {
+        return socialSecurityNumber;
+    }
+
+    public void setSocialSecurityNumber(String socialSecurityNumber) {
+        this.socialSecurityNumber = socialSecurityNumber;
     }
 
     public Long getId() {

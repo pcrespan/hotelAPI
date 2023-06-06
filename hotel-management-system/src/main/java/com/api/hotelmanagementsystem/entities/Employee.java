@@ -18,20 +18,27 @@ public class Employee implements Serializable {
 
     private EmployeeStatus status;
 
+    private String socialSecurityNumber;
+
     @OneToOne(mappedBy = "id.employee", fetch = FetchType.LAZY)
     private Contract contract;
 
     public Employee() {
     }
 
-    public Employee(Long id, String name, EmployeeStatus status) {
+    public Employee(Long id, String name, EmployeeStatus status, String socialSecurityNumber) {
         this.id = id;
         this.name = name;
         this.status = status;
+        this.socialSecurityNumber = socialSecurityNumber;
     }
 
     public boolean active() {
         return status.equals(EmployeeStatus.ACTIVE);
+    }
+
+    public String getSocialSecurityNumber() {
+        return socialSecurityNumber;
     }
 
     public Contract getContract() {
