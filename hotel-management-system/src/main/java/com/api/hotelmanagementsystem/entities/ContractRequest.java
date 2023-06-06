@@ -5,16 +5,26 @@ import java.util.Date;
 public class ContractRequest {
     private Long employeeId;
     private Long sectorId;
+    private Long roleId;
     private Double salary;
     private Date start;
 
     public ContractRequest() {
     }
 
-    public ContractRequest(Long sectorId, Double salary, Date start) {
+    public ContractRequest(Long sectorId, Long roleId, Double salary, Date start) {
         this.sectorId = sectorId;
+        this.roleId = roleId;
         this.salary = salary;
         this.start = start;
+    }
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public Long getEmployeeId() {

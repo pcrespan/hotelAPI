@@ -2,6 +2,7 @@ package com.api.hotelmanagementsystem.configs;
 
 import com.api.hotelmanagementsystem.entities.*;
 import com.api.hotelmanagementsystem.entities.enums.EmployeeStatus;
+import com.api.hotelmanagementsystem.entities.enums.RoleName;
 import com.api.hotelmanagementsystem.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -34,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private ContractRepository contractRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @Override
     public void run(String... args) throws Exception {
         Guest g1 = new Guest(null, "John Doe", "9999999");
@@ -55,6 +59,14 @@ public class TestConfig implements CommandLineRunner {
 
         stayRepository.saveAll(Arrays.asList(s1, s2, s3));
 
+        Role rol1 = new Role(null, "Receptionist", RoleName.RECEPTIONIST);
+        Role rol2 = new Role(null, "Salesman", RoleName.SALESMAN);
+        Role rol3 = new Role(null, "Temp", RoleName.TEMP);
+        Role rol4 = new Role(null, "Regional manager", RoleName.REGIONAL_MANAGER);
+        Role rol5 = new Role(null, "Human resources", RoleName.HUMAN_RESOURCES);
+
+        roleRepository.saveAll(Arrays.asList(rol1, rol2, rol3, rol4, rol5));
+
         Employee e1 = new Employee(null, "Pam Beesly", EmployeeStatus.ACTIVE, "97485170363");
         Employee e2 = new Employee(null, "Dwight Schrute", EmployeeStatus.ACTIVE, "94612013856");
         Employee e3 = new Employee(null, "Jim Halpert", EmployeeStatus.ACTIVE, "51936204756");
@@ -71,13 +83,13 @@ public class TestConfig implements CommandLineRunner {
 
         sectorRepository.saveAll(Arrays.asList(sec1, sec2, sec3));
 
-        Contract c1 = new Contract(e1, sec1, 2000.0, Date.valueOf("2023-05-22"));
-        Contract c2 = new Contract(e2, sec3, 7000.0, Date.valueOf("1999-03-12"));
-        Contract c3 = new Contract(e3, sec3, 5000.0, Date.valueOf("2005-02-17"));
-        Contract c4 = new Contract(e4, sec3, 2000.0, Date.valueOf("2012-09-30"));
-        Contract c5 = new Contract(e5, sec3, 4500.0, Date.valueOf("2003-06-23"));
-        Contract c6 = new Contract(e6, sec3, 7500.0, Date.valueOf("1990-04-12"));
-        Contract c7 = new Contract(e7, sec2, 4000.0, Date.valueOf("1995-04-12"));
+        Contract c1 = new Contract(e1, sec1, 2000.0, Date.valueOf("2023-05-22"), rol1);
+        Contract c2 = new Contract(e2, sec3, 7000.0, Date.valueOf("1999-03-12"), rol2);
+        Contract c3 = new Contract(e3, sec3, 5000.0, Date.valueOf("2005-02-17"), rol2);
+        Contract c4 = new Contract(e4, sec3, 2000.0, Date.valueOf("2012-09-30"), rol3);
+        Contract c5 = new Contract(e5, sec3, 4500.0, Date.valueOf("2003-06-23"), rol2);
+        Contract c6 = new Contract(e6, sec3, 7500.0, Date.valueOf("1990-04-12"), rol4);
+        Contract c7 = new Contract(e7, sec2, 4000.0, Date.valueOf("1995-04-12"), rol5);
 
         contractRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7));
     }

@@ -17,14 +17,27 @@ public class Contract implements Serializable {
     private Double salary;
     private Date start;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     public Contract() {
     }
 
-    public Contract(Employee employee, Sector sector, Double salary, Date start) {
+    public Contract(Employee employee, Sector sector, Double salary, Date start, Role role) {
         id.setEmployee(employee);
         id.setSector(sector);
         this.salary = salary;
         this.start = start;
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @JsonIgnore

@@ -2,6 +2,7 @@ package com.api.hotelmanagementsystem.dto;
 
 import com.api.hotelmanagementsystem.entities.Contract;
 import com.api.hotelmanagementsystem.entities.Employee;
+import com.api.hotelmanagementsystem.entities.Role;
 import com.api.hotelmanagementsystem.entities.enums.EmployeeStatus;
 import org.springframework.beans.BeanUtils;
 
