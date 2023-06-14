@@ -62,7 +62,6 @@ public class ContractService {
                 contractRequest.getSalary(),
                 contractRequest.getStart(),
                 r);
-        ContractDTO obj = new ContractDTO(contractRepository.save(c));
-        return obj;
+        return new ContractDTO(contractRepository.save(c));
     }
 }

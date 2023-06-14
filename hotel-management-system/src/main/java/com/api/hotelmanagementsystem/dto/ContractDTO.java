@@ -4,13 +4,12 @@ import com.api.hotelmanagementsystem.entities.Contract;
 import com.api.hotelmanagementsystem.entities.Employee;
 import com.api.hotelmanagementsystem.entities.Role;
 import com.api.hotelmanagementsystem.entities.Sector;
-import com.api.hotelmanagementsystem.entities.pk.ContractPK;
-import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
 
 public class ContractDTO {
-    private ContractPK id = new ContractPK();
+    private EmployeeMinDTO employee;
+    private Sector sector;
     private Role role;
     private Double salary;
     private Date start;
@@ -19,23 +18,35 @@ public class ContractDTO {
     }
 
     public ContractDTO(Contract contract) {
-        BeanUtils.copyProperties(contract, this);
+        this.employee = new EmployeeMinDTO(contract.getEmployee());
+        this.sector = contract.getSector();
+        this.role = contract.getRole();
+        this.salary = contract.getSalary();
+        this.start = contract.getStart();
     }
 
-    public void setEmployee(Employee employee) {
-        id.setEmployee(employee);
+    public EmployeeMinDTO getEmployee() {
+        return employee;
     }
 
-    public void setSector(Sector sector) {
-        id.setSector(sector);
-    }
-
-    public Employee getEmployee() {
-        return id.getEmployee();
+    public void setEmployee(EmployeeMinDTO employee) {
+        this.employee = employee;
     }
 
     public Sector getSector() {
-        return id.getSector();
+        return sector;
+    }
+
+    public void setSector(Sector sector) {
+        this.sector = sector;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Double getSalary() {
