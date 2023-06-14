@@ -49,6 +49,10 @@ public class Contract implements Serializable {
         return id.getSector();
     }
 
+    public void setSector(Sector sector) {
+        id.setSector(sector);
+    }
+
     public Double getSalary() {
         return salary;
     }

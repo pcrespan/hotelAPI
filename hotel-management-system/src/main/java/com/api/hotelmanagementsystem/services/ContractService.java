@@ -1,5 +1,6 @@
 package com.api.hotelmanagementsystem.services;
 
+import com.api.hotelmanagementsystem.dto.ContractDTO;
 import com.api.hotelmanagementsystem.entities.*;
 import com.api.hotelmanagementsystem.entities.enums.EmployeeStatus;
 import com.api.hotelmanagementsystem.repositories.ContractRepository;
@@ -50,5 +51,18 @@ public class ContractService {
         employeeRepository.updateEmployeeStatus(emp.getId(), emp.getStatus().getCode());
         Contract contract = new Contract(emp, sector, contractRequest.getSalary(), contractRequest.getStart(), role);
         return contractRepository.save(contract);
+    }
+
+    @Transactional
+    public ContractDTO updateContract(ContractRequest contractRequest, Contract contract) {
+        Role r = roleRepository.findById(contractRequest.getRoleId()).get();
+        Sector s = sectorRepository.findById(contractRequest.getSectorId()).get();
+        Contract c = new Contract(contract.getEmployee(),
+                contract.getSector(),
+                contractRequest.getSalary(),
+                contractRequest.getStart(),
+                r);
+        ContractDTO obj = new ContractDTO(contractRepository.save(c));
+        return obj;
     }
 }

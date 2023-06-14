@@ -1,5 +1,6 @@
 package com.api.hotelmanagementsystem.controllers;
 
+import com.api.hotelmanagementsystem.dto.ContractDTO;
 import com.api.hotelmanagementsystem.entities.Contract;
 import com.api.hotelmanagementsystem.entities.ContractRequest;
 import com.api.hotelmanagementsystem.entities.Employee;
@@ -52,5 +53,12 @@ public class EmployeeController {
     public ResponseEntity<Contract> insertContract(@PathVariable Long id, @RequestBody ContractRequest contractRequest) {
         contractRequest.setEmployeeId(id);
         return ResponseEntity.ok().body(contractService.insert(contractRequest));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ContractDTO> updateContract(@PathVariable Long id, @RequestBody ContractRequest contractRequest) {
+        EmployeeDTO emp = employeeService.findById(id);
+        contractRequest.setEmployeeId(id);
+        return ResponseEntity.ok().body(contractService.updateContract(contractRequest, emp.getContract()));
     }
 }
