@@ -57,8 +57,7 @@ public class EmployeeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ContractDTO> updateContract(@PathVariable Long id, @RequestBody ContractRequest contractRequest) {
-        EmployeeDTO emp = employeeService.findById(id);
         contractRequest.setEmployeeId(id);
-        return ResponseEntity.ok().body(contractService.updateContract(contractRequest, emp.getContract()));
+        return ResponseEntity.ok().body(contractService.updateContract(contractRequest));
     }
 }

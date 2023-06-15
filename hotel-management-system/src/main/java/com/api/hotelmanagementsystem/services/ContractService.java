@@ -54,14 +54,16 @@ public class ContractService {
     }
 
     @Transactional
-    public ContractDTO updateContract(ContractRequest contractRequest, Contract contract) {
+    public ContractDTO updateContract(ContractRequest contractRequest) {
+        Employee e = employeeRepository.findById(contractRequest.getEmployeeId()).get();
         Role r = roleRepository.findById(contractRequest.getRoleId()).get();
         Sector s = sectorRepository.findById(contractRequest.getSectorId()).get();
-        Contract c = new Contract(contract.getEmployee(),
-                contract.getSector(),
+        Contract c = new Contract(e,
+                s,
                 contractRequest.getSalary(),
                 contractRequest.getStart(),
                 r);
+        contractRepository.delete(e.getContract());
         return new ContractDTO(contractRepository.save(c));
     }
 }
