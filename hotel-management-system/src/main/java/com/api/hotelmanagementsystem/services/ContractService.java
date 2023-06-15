@@ -11,6 +11,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 public class ContractService {
 
@@ -55,15 +57,12 @@ public class ContractService {
 
     @Transactional
     public ContractDTO updateContract(ContractRequest contractRequest) {
-        Employee e = employeeRepository.findById(contractRequest.getEmployeeId()).get();
-        Role r = roleRepository.findById(contractRequest.getRoleId()).get();
-        Sector s = sectorRepository.findById(contractRequest.getSectorId()).get();
-        Contract c = new Contract(e,
-                s,
+        contractRepository.deleteByEmployeeId(contractRequest.getEmployeeId());
+        Contract c = new Contract(employeeRepository.findById(contractRequest.getEmployeeId()).get(),
+                sectorRepository.findById(contractRequest.getSectorId()).get(),
                 contractRequest.getSalary(),
                 contractRequest.getStart(),
-                r);
-        contractRepository.delete(e.getContract());
+                roleRepository.findById(contractRequest.getRoleId()).get());
         return new ContractDTO(contractRepository.save(c));
     }
 }
