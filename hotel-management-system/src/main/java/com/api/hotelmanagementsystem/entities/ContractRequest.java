@@ -1,12 +1,23 @@
 package com.api.hotelmanagementsystem.entities;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Date;
 
 public class ContractRequest {
     private Long employeeId;
+
+    @NotNull(message = "Sector id can't be null")
     private Long sectorId;
+
+    @NotNull(message = "Role id can't be null")
     private Long roleId;
+
+    @NotNull(message = "Salary can't be null")
     private Double salary;
+
+    @NotNull(message = "Date can't be null")
     private Date start;
 
     public ContractRequest() {

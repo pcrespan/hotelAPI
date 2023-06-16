@@ -5,6 +5,7 @@ import com.api.hotelmanagementsystem.dto.SectorMinDTO;
 import com.api.hotelmanagementsystem.entities.Sector;
 import com.api.hotelmanagementsystem.services.SectorService;
 import jakarta.servlet.Servlet;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class SectorController {
     }
 
     @PostMapping
-    public ResponseEntity<SectorDTO> insert(@RequestBody Sector sector) {
+    public ResponseEntity<SectorDTO> insert(@Valid @RequestBody Sector sector) {
         SectorDTO sec = sectorService.insert(sector);
 
         URI uri = ServletUriComponentsBuilder

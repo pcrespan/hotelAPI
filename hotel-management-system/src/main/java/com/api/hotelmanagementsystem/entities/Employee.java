@@ -2,6 +2,8 @@ package com.api.hotelmanagementsystem.entities;
 
 import com.api.hotelmanagementsystem.entities.enums.EmployeeStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,10 +16,14 @@ public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Name can't be blank")
     private String name;
 
+    @NotNull(message = "Status can't be null")
     private EmployeeStatus status;
 
+    @NotBlank(message = "SSN can't be null")
     private String socialSecurityNumber;
 
     @OneToOne(mappedBy = "id.employee", fetch = FetchType.LAZY)

@@ -8,6 +8,7 @@ import com.api.hotelmanagementsystem.dto.EmployeeDTO;
 import com.api.hotelmanagementsystem.dto.EmployeeMinDTO;
 import com.api.hotelmanagementsystem.services.ContractService;
 import com.api.hotelmanagementsystem.services.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeDTO> insert(@RequestBody Employee employee) {
+    public ResponseEntity<EmployeeDTO> insert(@Valid @RequestBody Employee employee) {
         EmployeeDTO emp = employeeService.insert(employee);
 
         URI uri = ServletUriComponentsBuilder
@@ -50,13 +51,13 @@ public class EmployeeController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Contract> insertContract(@PathVariable Long id, @RequestBody ContractRequest contractRequest) {
+    public ResponseEntity<Contract> insertContract(@PathVariable Long id, @Valid @RequestBody ContractRequest contractRequest) {
         contractRequest.setEmployeeId(id);
         return ResponseEntity.ok().body(contractService.insert(contractRequest));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ContractDTO> updateContract(@PathVariable Long id, @RequestBody ContractRequest contractRequest) {
+    public ResponseEntity<ContractDTO> updateContract(@PathVariable Long id, @Valid @RequestBody ContractRequest contractRequest) {
         contractRequest.setEmployeeId(id);
         return ResponseEntity.ok().body(contractService.updateContract(contractRequest));
     }

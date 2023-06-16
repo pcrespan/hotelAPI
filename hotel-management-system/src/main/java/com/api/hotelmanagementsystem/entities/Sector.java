@@ -2,6 +2,7 @@ package com.api.hotelmanagementsystem.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,8 +17,11 @@ public class Sector implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Name can't be null.")
     private String name;
 
+    @NotBlank(message = "Description can't be null.")
     @Column(columnDefinition = "TEXT")
     private String description;
 

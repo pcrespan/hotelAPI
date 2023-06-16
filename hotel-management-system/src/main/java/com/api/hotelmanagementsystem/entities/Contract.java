@@ -3,6 +3,8 @@ package com.api.hotelmanagementsystem.entities;
 import com.api.hotelmanagementsystem.entities.pk.ContractPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,7 +16,11 @@ public class Contract implements Serializable {
 
     @EmbeddedId
     private ContractPK id = new ContractPK();
+
+    @NotNull(message = "Salary can't be null")
     private Double salary;
+
+    @NotNull(message = "Date can't be null")
     private Date start;
 
     @ManyToOne
