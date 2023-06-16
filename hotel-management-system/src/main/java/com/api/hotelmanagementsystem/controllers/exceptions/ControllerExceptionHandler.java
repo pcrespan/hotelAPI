@@ -9,29 +9,39 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.Instant;
+import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(RoomOccupiedException.class)
-    public ResponseEntity<StandardError> roomOccupied(RoomOccupiedException e, HttpServletRequest request) {
-        String error = "Room already occupied.";
+    private ResponseEntity<StandardError> generateStandardError(String error,
+                                                                RuntimeException e,
+                                                                HttpServletRequest request,
+                                                                HttpStatus status) {
         Instant timestamp = Instant.now();
-        HttpStatus status = HttpStatus.BAD_REQUEST;
         String message = e.getMessage();
         String path = request.getRequestURI();
         StandardError err = new StandardError(timestamp, status.value(), error, message, path);
         return ResponseEntity.status(err.getStatus()).body(err);
     }
 
+    @ExceptionHandler(RoomOccupiedException.class)
+    public ResponseEntity<StandardError> roomOccupied(RoomOccupiedException e, HttpServletRequest request) {
+        return generateStandardError("Room already occupied", e, request, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(InvalidRoomIdException.class)
     public ResponseEntity<StandardError> invalidRoomId(InvalidRoomIdException e, HttpServletRequest request) {
-        String error = "No such room id.";
-        Instant timestamp = Instant.now();
-        HttpStatus status = HttpStatus.NOT_FOUND;
-        String message = e.getMessage();
-        String path = request.getRequestURI();
-        StandardError err = new StandardError(timestamp, status.value(), error, message, path);
-        return ResponseEntity.status(status).body(err);
+        return generateStandardError("No such room id.", e, request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<StandardError> elementNotFound(NoSuchElementException e, HttpServletRequest request) {
+        return generateStandardError("Invalid id value.", e, request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<StandardError> employeeActive(IllegalArgumentException e, HttpServletRequest request) {
+        return generateStandardError("Employee is already active.", e, request, HttpStatus.BAD_REQUEST);
     }
 }

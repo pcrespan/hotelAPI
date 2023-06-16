@@ -30,23 +30,12 @@ public class ContractService {
 
     @Transactional
     public Contract insert(ContractRequest contractRequest) {
-        // Still need to check if employee exists (create error)
         Employee emp = employeeRepository.findById(contractRequest.getEmployeeId()).get();
-
-        if (emp.active()) {
-            throw new IllegalArgumentException("Employee already active");
-        }
-
         Role role = roleRepository.findById(contractRequest.getRoleId()).get();
-
-        if (role == null) {
-            throw new IllegalArgumentException("Role does not exist.");
-        }
-
         Sector sector = sectorRepository.findById(contractRequest.getSectorId()).get();
 
-        if (sector == null) {
-            throw new IllegalArgumentException("Sector does not exist.");
+        if (emp.active()) {
+            throw new IllegalArgumentException("Employee already has a contract");
         }
 
         emp.setStatus(EmployeeStatus.ACTIVE);
