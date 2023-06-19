@@ -9,6 +9,7 @@ import com.api.hotelmanagementsystem.entities.StayRequest;
 import com.api.hotelmanagementsystem.services.GuestService;
 import com.api.hotelmanagementsystem.services.StayService;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,7 @@ public class GuestController {
     }
 
     @PostMapping
-    public ResponseEntity<GuestDTO> insert(@RequestBody Guest guest) {
+    public ResponseEntity<GuestDTO> insert(@Valid @RequestBody Guest guest) {
         GuestDTO obj = new GuestDTO(guestService.insert(guest));
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -50,12 +51,12 @@ public class GuestController {
     }
 
     @GetMapping(value = "/{id}/stay")
-    public Set<Stay> findStayByGuestId(@PathVariable long id) {
+    public List<Stay> findStayByGuestId(@PathVariable long id) {
         return guestService.findById(id).getStay();
     }
 
     @PostMapping(value = "/{id}/stay")
-    public Stay insertStay(@PathVariable long id, @RequestBody StayRequest stay) {
+    public Stay insertStay(@PathVariable long id, @Valid @RequestBody StayRequest stay) {
         stay.setGuestId(id);
         return stayService.insert(stay);
     }

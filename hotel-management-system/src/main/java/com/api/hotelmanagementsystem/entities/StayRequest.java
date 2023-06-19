@@ -1,11 +1,16 @@
 package com.api.hotelmanagementsystem.entities;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Date;
 
 public class StayRequest {
     private Long guestId;
+    @NotNull
     private Long roomId;
+    @NotNull
     private Date arrival;
+    @NotNull
     private Date leaving;
 
     public StayRequest() {

@@ -6,7 +6,6 @@ import org.springframework.beans.BeanUtils;
 
 public class RoomDTO {
     private Long id;
-    private String number;
     private RoomStatus status;
 
     public RoomDTO() {
@@ -22,14 +21,6 @@ public class RoomDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public RoomStatus getStatus() {

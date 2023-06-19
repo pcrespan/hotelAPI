@@ -46,10 +46,10 @@ public class TestConfig implements CommandLineRunner {
 
         guestRepository.saveAll(Arrays.asList(g1, g2, g3));
 
-        Room r1 = new Room(null, "123", RoomStatus.FREE);
-        Room r2 = new Room(null, "111", RoomStatus.OCCUPIED);
-        Room r3 = new Room(null, "112", RoomStatus.FREE);
-        Room r4 = new Room(null, "113", RoomStatus.FREE);
+        Room r1 = new Room(null, RoomStatus.FREE);
+        Room r2 = new Room(null, RoomStatus.OCCUPIED);
+        Room r3 = new Room(null, RoomStatus.FREE);
+        Room r4 = new Room(null, RoomStatus.FREE);
 
         roomRepository.saveAll(Arrays.asList(r1, r2, r3, r4));
 

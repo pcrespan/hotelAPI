@@ -1,11 +1,10 @@
 package com.api.hotelmanagementsystem.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_guests")
@@ -15,11 +14,13 @@ public class Guest implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Guest name cannot be blank.")
     private String name;
+    @NotBlank(message = "Guest SSN cannot be blank.")
     private String socialSecurityNumber;
 
     @OneToMany(mappedBy = "id.guest")
-    private Set<Stay> stay = new HashSet<>();
+    private List<Stay> stay = new ArrayList<>();
 
     public Guest() {
     }
@@ -30,7 +31,7 @@ public class Guest implements Serializable {
         this.socialSecurityNumber = socialSecurityNumber;
     }
 
-    public Set<Stay> getStay() {
+    public List<Stay> getStay() {
         return stay;
     }
 

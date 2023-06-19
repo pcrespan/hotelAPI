@@ -15,7 +15,6 @@ public class Room implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String number;
     private RoomStatus status;
 
     @JsonIgnore
@@ -25,9 +24,8 @@ public class Room implements Serializable {
     public Room() {
     }
 
-    public Room(Long id, String number, RoomStatus status) {
+    public Room(Long id, RoomStatus status) {
         this.id = id;
-        this.number = number;
         this.status = status;
     }
 
@@ -46,14 +44,6 @@ public class Room implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public RoomStatus getStatus() {
